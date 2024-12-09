@@ -3,6 +3,7 @@ import Tag from "@/components/Tag";
 import avatar1 from "@/assets/images/avatar-ashwin-santiago.jpg";
 import avatar2 from "@/assets/images/avatar-lula-meyers.jpg";
 import avatar3 from "@/assets/images/avatar-florence-shaw.jpg";
+import avatar4 from "@/assets/images/avatar-owen-garcia.jpg";
 import Image from "next/image";
 import Avatar from "@/components/Avatar";
 import Key from "@/components/Key";
@@ -32,7 +33,7 @@ export default function Features() {
                     <FeatureCard
                         title="Real-time Collaboration"
                         description="Work together seamlessly with conflict-free team editing"
-                        className="md:col-span-2 lg:col-span-1"
+                        className="md:col-span-2 lg:col-span-1 group"
                     >
                         <div className="aspect-video flex  items-center justify-center">
                             <Avatar className="z-40">
@@ -56,8 +57,13 @@ export default function Features() {
                                     className="rounded-full"
                                 />
                             </Avatar>
-                            <Avatar className="-ml-6 border-transparent">
-                                <div className="size-full bg-neutral-700 rounded-full inline-flex items-center justify-center gap-1">
+                            <Avatar className="-ml-6 border-transparent group-hover:border-green-500 transition">
+                                <div className="size-full bg-neutral-700 rounded-full inline-flex items-center justify-center gap-1 relative">
+                                    <Image
+                                        src={avatar4}
+                                        alt="Avatar 4"
+                                        className="absolute size-full rounded-full opacity-0 group-hover:opacity-100 transition"
+                                    />
                                     {Array.from({ length: 3 }).map((_, i) => (
                                         <span
                                             className="size-1.5 rounded-full bg-white inline-flex"
@@ -105,7 +111,9 @@ export default function Features() {
                             <span className="bg-lime-400 text-neutral-950 size-5 rounded-full inline-flex items-center justify-center text-xl">
                                 &#10038;
                             </span>
-                            <span className="font-medium md:text-lg">{feature}</span>
+                            <span className="font-medium md:text-lg">
+                                {feature}
+                            </span>
                         </div>
                     ))}
                 </div>
