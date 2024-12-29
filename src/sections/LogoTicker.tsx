@@ -2,25 +2,25 @@
 
 import { Fragment } from "react";
 import masterCard from "@/assets/images/mastercard.svg";
-import cocaCola from "@/assets/images/cocacola.png";
-import google from "@/assets/images/Google.png";
-import primeVideo from "@/assets/images/primeVideo.png";
-import lg from "@/assets/images/lg.png";
-import maggi from "@/assets/images/maggi.png";
-import huawei from "@/assets/images/huawei.png";
-import nivea from "@/assets/images/nivea.png";
+import acmeCorp from "@/assets/images/acme-corp.svg";
+import echoValley from "@/assets/images/echo-valley.svg";
+import pulse from "@/assets/images/pulse.svg";
+import outside from "@/assets/images/outside.svg";
+import apex from "@/assets/images/apex.svg";
+import celestial from "@/assets/images/celestial.svg";
+import twice from "@/assets/images/twice.svg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
     { name: "Quantum", image: masterCard },
-    { name: "Acme Corp", image: cocaCola },
-    { name: "Echo Valley", image: google },
-    { name: "Pulse", image: primeVideo },
-    { name: "Outside", image: lg },
-    { name: "Apex", image: maggi },
-    { name: "Celestial", image: huawei },
-    { name: "Twice", image: nivea },
+    { name: "Acme Corp", image: acmeCorp },
+    { name: "Echo Valley", image: echoValley },
+    { name: "Pulse", image: pulse },
+    { name: "Outside", image: outside },
+    { name: "Apex", image: apex },
+    { name: "Celestial", image: celestial },
+    { name: "Twice", image: twice },
 ];
 
 export default function LogoTicker() {
@@ -36,7 +36,7 @@ export default function LogoTicker() {
                             x: "-50%",
                         }}
                         transition={{
-                            duration: 20, // change to 30
+                            duration: 20,
                             ease: "linear",
                             repeat: Infinity,
                         }}
@@ -49,7 +49,9 @@ export default function LogoTicker() {
                                         src={logo.image}
                                         key={logo.name}
                                         alt={logo.name}
-                                        height={50} // added myself, fix later
+                                        width={120}
+                                        height={50}
+                                        className="h-12 w-auto"
                                     />
                                 ))}
                             </Fragment>

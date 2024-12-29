@@ -13,7 +13,11 @@ export default function Footer() {
             <div className="container">
                 <div className="flex flex-col md:flex-row items-center md:justify-between gap-6">
                     <div>
-                        <Image src={logoImage} alt="Layers logo" />
+                        {/* <Image src={logoImage} alt="Layers logo" /> */}
+                        <h1
+                          className="text-4xl font-bold md:text-5xl"
+                          >Maraji
+                        </h1>
                     </div>
 
                     <div>

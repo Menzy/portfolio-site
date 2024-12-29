@@ -22,7 +22,7 @@ export default function Home() {
             <Analytics />
             {/* <Faqs /> */}
             <Contact />
-            <CallToAction />
+            {/* <CallToAction /> */}
             <Footer />
         </>
     );

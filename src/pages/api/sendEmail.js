@@ -1,58 +1,72 @@
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
+import { validateContactForm } from "@/lib/email/validation";
+import { createEmailConfig } from "@/lib/email/config";
 
 const SCOPES = ["https://www.googleapis.com/auth/gmail.send"];
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+    if (req.method !== "POST") {
+        return res.status(405).json({ message: "Method not allowed" });
+    }
 
-  const { name, email, message, company, budget } = req.body;
+    try {
+        // Validate form data
+        const validationError = validateContactForm(req.body);
+        if (validationError) {
+            return res.status(400).json({ message: validationError });
+        }
 
-  try {
-    // Initialize JWT client
-    const auth = new google.auth.JWT(
-      process.env.GMAIL_SERVICE_ACCOUNT_CLIENT_EMAIL,
-      null,
-      process.env.GMAIL_SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, "\n"),
-      SCOPES
-    );
+        // Validate environment variables
+        if (!process.env.GMAIL_SERVICE_ACCOUNT_CLIENT_EMAIL || 
+            !process.env.GMAIL_SERVICE_ACCOUNT_PRIVATE_KEY || 
+            !process.env.GMAIL_USER) {
+            throw new Error("Missing required environment variables");
+        }
 
-    // Get the access token
-    const accessToken = await auth.authorize();
+        // Initialize JWT client
+        const auth = new google.auth.JWT(
+            process.env.GMAIL_SERVICE_ACCOUNT_CLIENT_EMAIL,
+            null,
+            process.env.GMAIL_SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, "\n"),
+            SCOPES
+        );
 
-    // Configure the nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        user: process.env.GMAIL_USER, // Gmail address you're sending from
-        accessToken: accessToken.access_token,
-      },
-    });
+        // Get access token
+        const accessToken = await auth.authorize();
 
-    // Define the mail options
-    const mailOptions = {
-      from: `Your Website <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER, // Replace with your email or dynamic recipient
-      subject: `New Message from ${name}`,
-      text: `Company: ${company}\nBudget: ${budget}\n\nMessage:\n${message}`,
-      html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Budget:</strong> ${budget}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    };
+        // Configure transporter
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                type: "OAuth2",
+                user: process.env.GMAIL_USER,
+                accessToken: accessToken.access_token,
+            },
+        });
 
-    // Send the email
-    const result = await transporter.sendMail(mailOptions);
+        // Create email config
+        const emailConfig = createEmailConfig(req.body);
 
-    return res.status(200).json({ message: "Email sent successfully", result });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    return res.status(500).json({ message: "Failed to send email", error });
-  }
+        // Send email
+        const result = await transporter.sendMail(emailConfig);
+
+        return res.status(200).json({ 
+            message: "Email sent successfully",
+            messageId: result.messageId 
+        });
+
+    } catch (error) {
+        console.error("Error sending email:", error);
+        
+        // Provide specific error messages based on error type
+        const errorMessage = error.message === "Missing required environment variables"
+            ? "Email service is not properly configured"
+            : "Failed to send email";
+
+        return res.status(500).json({ 
+            message: errorMessage,
+            error: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    }
 }
