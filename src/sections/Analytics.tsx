@@ -12,21 +12,25 @@ const integrations = [
         name: "Average Followers",
         icon: figmaIcon,
         description: "Figma is a collaborative interface design tool.",
+        stat: "10k"
     },
     {
         name: "Average Reach",
         icon: notionIcon,
         description: "Notion is an all-in-one workspace for notes and docs.",
+        stat: "20k"
     },
     {
         name: "Average Impressions",
         icon: slackIcon,
         description: "Slack is a powerful team communication platform.",
+        stat: "30k"
     },
     {
         name: "Engagement Rate",
         icon: relumeIcon,
         description: "Relume is a no-code website builder and design system.",
+        stat: "40%"
     }
     // {
     //     name: "Framer",
