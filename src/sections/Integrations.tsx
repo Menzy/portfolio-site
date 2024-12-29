@@ -5,7 +5,6 @@ import slackIcon from "@/assets/images/slack-logo.svg";
 import relumeIcon from "@/assets/images/relume-logo.svg";
 import framerIcon from "@/assets/images/framer-logo.svg";
 import githubIcon from "@/assets/images/github-logo.svg";
-import Image from "next/image";
 import IntegrationsColumn from "@/components/IntegrationsColumn";
 
 const integrations = [
@@ -45,7 +44,7 @@ export type IntegrationsType = typeof integrations;
 
 export default function Integrations() {
     return (
-        <section className="py-24 overflow-hidden">
+        <section id="integrations" className="py-24 overflow-hidden">
             <div className="container">
                 <div className="grid lg:grid-cols-2 items-center lg:gap-16">
                     <div>

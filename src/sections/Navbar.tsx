@@ -8,14 +8,25 @@ import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Features", href: "#features" },
-    { label: "Integrations", href: "#integrations" },
-    { label: "FAQs", href: "#faqs" },
+    { label: "Home", href: "home" },
+    { label: "Features", href: "features" },
+    { label: "Integrations", href: "integrations" },
+    { label: "FAQs", href: "faqs" },
+    { label: "Contact", href: "contact" },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        setIsOpen(false);
+        const element = document.getElementById(href);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <>
             <section className="py-4 lg:py-8 fixed w-full top-0 z-50">
@@ -32,7 +43,11 @@ export default function Navbar() {
                             <div className="lg:flex justify-center items-center hidden">
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((link) => (
-                                        <a href={link.href} key={link.label}>
+                                        <a
+                                            href={`#${link.href}`}
+                                            key={link.label}
+                                            onClick={(e) => handleScroll(e, link.href)}
+                                        >
                                             {link.label}
                                         </a>
                                     ))}
@@ -82,17 +97,17 @@ export default function Navbar() {
                                         )}
                                     ></line>
                                 </svg>
-                                <Button
+                                {/* <Button
                                     variant="secondary"
                                     className="hidden md:inline-flex items-center"
                                 >
-                                    Log In
-                                </Button>
+                                    About
+                                </Button> */}
                                 <Button
                                     variant="primary"
                                     className="hidden md:inline-flex items-center"
                                 >
-                                    Sign Up
+                                    Contact Us
                                 </Button>
                             </div>
                         </div>
@@ -107,9 +122,9 @@ export default function Navbar() {
                                     <div className="flex flex-col items-center gap-4 py-4 ">
                                         {navLinks.map((link) => (
                                             <a
-                                                href={link.href}
+                                                href={`#${link.href}`}
                                                 key={link.label}
-                                                className=""
+                                                onClick={(e) => handleScroll(e, link.href)}
                                             >
                                                 {link.label}
                                             </a>

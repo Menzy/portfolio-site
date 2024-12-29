@@ -5,7 +5,7 @@ import { useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const text = `You're racing to create exceptional work, but traditional design tools slow you down with unnecessary complexity and steep learning curves.`;
+const text = `With over 2.5 million fans, I create skits that entertain and inspire. In my world, you’ll find laughs, creative digital products, and authentic connections.`;
 const words = text.split(" ");
 
 export default function Introduction() {
@@ -28,10 +28,10 @@ export default function Introduction() {
             <div className="container">
                 <div className="sticky top-20 md:top-28 lg:top-40">
                     <div className="flex justify-center">
-                        <Tag>Introducing Layers</Tag>
+                        <Tag>This is my World</Tag>
                     </div>
-                    <div className="text-4xl md:text-6xl lg:text-7xl text-center font-medium mt-10">
-                        <span>Your creative process deserves better.</span>{" "}
+                    <div className="text-4xl md:text-6xl lg:text-7xl tex[t-center font-medium mt-10">
+                        <span>Hi, I’m Maraji!</span>{" "}
                         <span className="">
                             {words.map((word, wordIndex) => (
                                 <span
@@ -46,11 +46,11 @@ export default function Introduction() {
                             ))}
                         </span>
                         <span className="text-lime-400 block">
-                            That&apos;s why we built Layers.
+                            Let’s create something amazing together!
                         </span>
                     </div>
                 </div>
-                <div className="h-[150vh]"></div>
+                <div className="h-[150vh]" ref={scrollTarget}></div>
             </div>
         </section>
     );
