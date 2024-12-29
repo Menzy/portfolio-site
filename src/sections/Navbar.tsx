@@ -34,11 +34,14 @@ export default function Navbar() {
                     <div className=" border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
                         <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center ">
                             <div>
-                                <Image
+                                {/* <Image
                                     src={logoImage}
                                     alt="Layers logo"
                                     className="h-9 w-auto md:h-auto"
-                                />
+                                /> */}
+                              <h1
+                                className="text-4xl font-bold md:text-5xl"
+                                >Maraji</h1>
                             </div>
                             <div className="lg:flex justify-center items-center hidden">
                                 <nav className="flex gap-6 font-medium">

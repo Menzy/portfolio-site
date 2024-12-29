@@ -41,13 +41,16 @@ function IntegrationsColumn(props: {
                                     alt={integration.name}
                                     className="size-24 "
                                 />
+                                <h3 className="text-3xl text-center mt-6">
+                                {integration.stat}
+                            </h3>
                             </div>
                             <h3 className="text-3xl text-center mt-6">
                                 {integration.name}
                             </h3>
-                            <p className="text-center text-white/50 mt-2">
+                            {/* <p className="text-center text-white/50 mt-2">
                                 {integration.description}
-                            </p>
+                            </p> */}
                         </div>
                     ))}
                 </Fragment>

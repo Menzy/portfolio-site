@@ -9,11 +9,37 @@ const Contact = () => {
         budget: "",
         message: "",
     });
+    const [status, setStatus] = useState<string | null>(null);
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        // Add your form submission logic here
-        console.log("Form submitted:", formData);
+        setStatus("Sending...");
+
+        try {
+            const response = await fetch("/api/sendEmail", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                setStatus("Message sent successfully!");
+                setFormData({
+                    name: "",
+                    email: "",
+                    company: "",
+                    budget: "",
+                    message: "",
+                });
+            } else {
+                const errorData = await response.json();
+                setStatus(`Failed to send message: ${errorData.message}`);
+            }
+        } catch (error) {
+            setStatus("Error: Message not sent.");
+        }
     };
 
     return (
@@ -110,6 +136,7 @@ const Contact = () => {
                 >
                     Send Message
                 </button>
+                {status && <p className="text-center mt-4 text-gray-400">{status}</p>}
             </form>
         </section>
     );

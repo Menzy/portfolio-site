@@ -9,28 +9,25 @@ import IntegrationsColumn from "@/components/IntegrationsColumn";
 
 const integrations = [
     {
-        name: "Women",
+        name: "Average Followers",
         icon: figmaIcon,
         description: "Figma is a collaborative interface design tool.",
-        stat: "80%"
     },
     {
-        name: "Men",
+        name: "Average Reach",
         icon: notionIcon,
         description: "Notion is an all-in-one workspace for notes and docs.",
-        stat: "20%"
     },
     {
-        name: "Age",
+        name: "Average Impressions",
         icon: slackIcon,
         description: "Slack is a powerful team communication platform.",
-        stat: "[Something]"
     },
-    // {
-    //     name: "Relume",
-    //     icon: relumeIcon,
-    //     description: "Relume is a no-code website builder and design system.",
-    // },
+    {
+        name: "Engagement Rate",
+        icon: relumeIcon,
+        description: "Relume is a no-code website builder and design system.",
+    }
     // {
     //     name: "Framer",
     //     icon: framerIcon,
@@ -50,19 +47,7 @@ export default function Integrations() {
         <section id="integrations" className="py-24 overflow-hidden">
             <div className="container">
                 <div className="grid lg:grid-cols-2 items-center lg:gap-16">
-                    <div>
-                        <Tag>Audience Demographics</Tag>
-                        <h2 className="text-6xl font-medium mt-6">
-                            See {" "}
-                            <span className="text-lime-400">who</span>
-                           {" "} engages with our content
-                        </h2>
-                        <p className="text-white/50 mt-4 text-lg">
-                            Layers seemlessly connects with your favorite tools,
-                            making it easy to plug into any workflow and
-                            collaborate across platforms
-                        </p>
-                    </div>
+                    
                     <div>
                         <div className="h-[400px] lg:h-[800px] mt-8  lg:mt-0 overflow-hidden grid md:grid-cols-2 gap-4 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
                             <IntegrationsColumn integrations={integrations} />
@@ -73,6 +58,18 @@ export default function Integrations() {
                             />
                         </div>
                     </div>
+
+                  <div>
+                        <Tag>Social Media Analytics</Tag>
+                        <h2 className="text-6xl font-medium mt-6">
+                            Plays well with{" "}
+                            <span className="text-lime-400">others</span>
+                        </h2>
+                        <p className="text-white/50 mt-4 text-lg">
+                            Average total followers, monthly reach and engagement across 3 platforms
+                        </p>
+                    </div>
+                  
                 </div>
             </div>
         </section>
