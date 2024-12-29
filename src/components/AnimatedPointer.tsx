@@ -11,7 +11,7 @@ type AnimatedPointerProps = {
     delay?: number;
 };
 
-export default function AnimatedPointer({ name, color, initialX, initialY, delay = 0 }: AnimatedPointerProps) {
+export default function AnimatedPointer({ name, color, initialX, delay = 0 }: AnimatedPointerProps) {
     return (
         <motion.div
             initial={{ opacity: 0, y: 100, x: initialX }}

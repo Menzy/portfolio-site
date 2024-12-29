@@ -1,6 +1,6 @@
-import CallToAction from "@/sections/CallToAction";
+// import CallToAction from "@/sections/CallToAction";
 import Contact from "@/sections/Contact";
-import Faqs from "@/sections/Faqs";
+// import Faqs from "@/sections/Faqs";
 import Features from "@/sections/Features";
 import Footer from "@/sections/Footer";
 import Hero from "@/sections/Hero";

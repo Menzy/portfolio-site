@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             message: payload.message,
         };
 
-        const result = await emailjs.send(serviceID, templateID, templateParams, userID);
+        await emailjs.send(serviceID, templateID, templateParams, userID);
 
         return res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {

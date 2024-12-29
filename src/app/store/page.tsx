@@ -49,7 +49,7 @@ export default function StorePage() {
                     Something amazing is coming soon
                 </h2>
                 <p className="text-gray-400 text-lg mb-12">
-                    We're working hard to bring you the best shopping experience. Stay tuned for our grand opening!
+                    We are working hard to bring you the best shopping experience. Stay tuned for our grand opening!
                 </p>
             </motion.div>
 
