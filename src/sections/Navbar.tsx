@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 
 const navLinks = [
     { label: "Home", href: "home" },
@@ -13,14 +14,21 @@ const navLinks = [
     { label: "Integrations", href: "integrations" },
     { label: "FAQs", href: "faqs" },
     { label: "Contact", href: "contact" },
+    { label: "Store", href: "/store", isPage: true },
 ];
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string, isPage?: boolean) => {
         e.preventDefault();
         setIsOpen(false);
+        
+        if (isPage) {
+            window.location.href = href;
+            return;
+        }
+        
         const element = document.getElementById(href);
         if (element) {
             element.scrollIntoView({ behavior: "smooth" });
@@ -34,22 +42,16 @@ export default function Navbar() {
                     <div className=" border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
                         <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center ">
                             <div>
-                                {/* <Image
-                                    src={logoImage}
-                                    alt="Layers logo"
-                                    className="h-9 w-auto md:h-auto"
-                                /> */}
-                              <h1
-                                className="text-4xl font-bold md:text-5xl"
-                                >Maraji</h1>
+                                <h1 className="text-4xl font-bold md:text-5xl">Maraji</h1>
                             </div>
                             <div className="lg:flex justify-center items-center hidden">
                                 <nav className="flex gap-6 font-medium">
                                     {navLinks.map((link) => (
                                         <a
-                                            href={`#${link.href}`}
+                                            href={link.isPage ? link.href : `#${link.href}`}
                                             key={link.label}
-                                            onClick={(e) => handleScroll(e, link.href)}
+                                            onClick={(e) => handleScroll(e, link.href, link.isPage)}
+                                            className="hover:text-lime-400 transition-colors"
                                         >
                                             {link.label}
                                         </a>
@@ -100,12 +102,6 @@ export default function Navbar() {
                                         )}
                                     ></line>
                                 </svg>
-                                {/* <Button
-                                    variant="secondary"
-                                    className="hidden md:inline-flex items-center"
-                                >
-                                    About
-                                </Button> */}
                                 <Button
                                     variant="primary"
                                     className="hidden md:inline-flex items-center"
@@ -125,18 +121,16 @@ export default function Navbar() {
                                     <div className="flex flex-col items-center gap-4 py-4 ">
                                         {navLinks.map((link) => (
                                             <a
-                                                href={`#${link.href}`}
+                                                href={link.isPage ? link.href : `#${link.href}`}
                                                 key={link.label}
-                                                onClick={(e) => handleScroll(e, link.href)}
+                                                onClick={(e) => handleScroll(e, link.href, link.isPage)}
+                                                className="hover:text-lime-400 transition-colors"
                                             >
                                                 {link.label}
                                             </a>
                                         ))}
-                                        <Button variant="secondary">
-                                            Log In
-                                        </Button>
                                         <Button variant="primary">
-                                            Sign Up
+                                            Contact Us
                                         </Button>
                                     </div>
                                 </motion.div>
