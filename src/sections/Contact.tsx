@@ -37,7 +37,7 @@ const Contact = () => {
             await emailjs.send(serviceID, templateID, templateParams, userID);
             setStatus("Message sent successfully!");
         } catch (error) {
-            setStatus("Failed to send message. Please try again.");
+            setStatus(`Failed to send message. ${error}. Please try again.`);
         }
     };
 
@@ -46,7 +46,7 @@ const Contact = () => {
             <div className="text-center mb-12">
                 <h2 className="text-6xl font-bold mb-4">Work With Me</h2>
                 <p className="text-xl text-gray-400">
-                    Let's create something amazing together
+                    Let&apos;s create something amazing together
                 </p>
             </div>
 

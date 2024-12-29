@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import logoImage from "@/assets/images/logo.svg";
+// import Image from "next/image";
+// import logoImage from "@/assets/images/logo.svg";
 import Button from "@/components/Button";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
+// import Link from "next/link";
 
 const navLinks = [
     { label: "Home", href: "home" },
