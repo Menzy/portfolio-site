@@ -10,9 +10,6 @@ import Link from "next/link";
 
 const navLinks = [
     { label: "Home", href: "home" },
-    { label: "Features", href: "features" },
-    { label: "Integrations", href: "integrations" },
-    { label: "FAQs", href: "faqs" },
     { label: "Contact", href: "contact" },
     { label: "Store", href: "/store", isPage: true },
 ];
@@ -35,12 +32,21 @@ export default function Navbar() {
         }
     };
 
+    const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" });
+        }
+        setIsOpen(false);
+    };
+
     return (
         <>
             <section className="py-4 lg:py-8 fixed w-full top-0 z-50">
                 <div className="container max-w-5xl">
-                    <div className=" border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
-                        <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center ">
+                    <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
+                        <div className="grid grid-cols-2 lg:grid-cols-3 p-2 px-4 md:pr-2 items-center">
                             <div>
                                 <h1 className="text-4xl font-bold md:text-5xl">Maraji</h1>
                             </div>
@@ -72,39 +78,14 @@ export default function Navbar() {
                                     className="feather feather-menu md:hidden"
                                     onClick={() => setIsOpen(!isOpen)}
                                 >
-                                    <line
-                                        x1="3"
-                                        y1="6"
-                                        x2="21"
-                                        y2="6"
-                                        className={twMerge(
-                                            "origin-left transition",
-                                            isOpen && "rotate-45 -translate-y-1"
-                                        )}
-                                    ></line>
-                                    <line
-                                        x1="3"
-                                        y1="12"
-                                        x2="21"
-                                        y2="12"
-                                        className={twMerge(
-                                            isOpen && "opacity-0"
-                                        )}
-                                    ></line>
-                                    <line
-                                        x1="3"
-                                        y1="18"
-                                        x2="21"
-                                        y2="18"
-                                        className={twMerge(
-                                            "origin-left transition",
-                                            isOpen && "-rotate-45 translate-y-1"
-                                        )}
-                                    ></line>
+                                    <line x1="3" y1="6" x2="21" y2="6" className={twMerge("origin-left transition", isOpen && "rotate-45 -translate-y-1")}></line>
+                                    <line x1="3" y1="12" x2="21" y2="12" className={twMerge(isOpen && "opacity-0")}></line>
+                                    <line x1="3" y1="18" x2="21" y2="18" className={twMerge("origin-left transition", isOpen && "-rotate-45 translate-y-1")}></line>
                                 </svg>
                                 <Button
                                     variant="primary"
                                     className="hidden md:inline-flex items-center"
+                                    onClick={handleContactClick}
                                 >
                                     Contact Us
                                 </Button>
@@ -118,7 +99,7 @@ export default function Navbar() {
                                     exit={{ height: 0 }}
                                     className="overflow-hidden"
                                 >
-                                    <div className="flex flex-col items-center gap-4 py-4 ">
+                                    <div className="flex flex-col items-center gap-4 py-4">
                                         {navLinks.map((link) => (
                                             <a
                                                 href={link.isPage ? link.href : `#${link.href}`}
@@ -129,7 +110,10 @@ export default function Navbar() {
                                                 {link.label}
                                             </a>
                                         ))}
-                                        <Button variant="primary">
+                                        <Button 
+                                            variant="primary"
+                                            onClick={handleContactClick}
+                                        >
                                             Contact Us
                                         </Button>
                                     </div>
