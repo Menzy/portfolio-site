@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: "",
+        fullname: "",
         email: "",
         company: "",
         budget: "",
@@ -27,7 +27,7 @@ const Contact = () => {
             if (response.ok) {
                 setStatus("Message sent successfully!");
                 setFormData({
-                    name: "",
+                    fullname: "",
                     email: "",
                     company: "",
                     budget: "",
@@ -63,9 +63,9 @@ const Contact = () => {
                         type="text"
                         placeholder="Your name"
                         className="w-full p-3 border bg-transparent border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none"
-                        value={formData.name}
+                        value={formData.fullname}
                         onChange={(e) =>
-                            setFormData({ ...formData, name: e.target.value })
+                            setFormData({ ...formData, fullname: e.target.value })
                         }
                     />
                 </div>
