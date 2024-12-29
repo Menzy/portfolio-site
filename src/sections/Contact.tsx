@@ -1,5 +1,7 @@
 "use client"; // Add this line to mark as client component
 import { FormEvent, useState } from "react";
+import emailjs from 'emailjs-com';
+
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -16,29 +18,26 @@ const Contact = () => {
         setStatus("Sending...");
 
         try {
-            const response = await fetch("/api/sendEmail", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
+            const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+            const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+            const userID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
-            if (response.ok) {
-                setStatus("Message sent successfully!");
-                setFormData({
-                    fullname: "",
-                    email: "",
-                    company: "",
-                    budget: "",
-                    message: "",
-                });
-            } else {
-                const errorData = await response.json();
-                setStatus(`Failed to send message: ${errorData.message}`);
+            if (!serviceID || !templateID || !userID) {
+                throw new Error("Missing required environment variables");
             }
+
+            const templateParams = {
+                fullname: formData.fullname,
+                email: formData.email,
+                company: formData.company,
+                budget: formData.budget,
+                message: formData.message,
+            };
+
+            await emailjs.send(serviceID, templateID, templateParams, userID);
+            setStatus("Message sent successfully!");
         } catch (error) {
-            setStatus("Error: Message not sent.");
+            setStatus("Failed to send message. Please try again.");
         }
     };
 
