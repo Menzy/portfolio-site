@@ -21,26 +21,23 @@ const integrations = [
         stat: "20%"
     },
     {
-        name: "Age",
+        name: "Age 18-24",
         icon: slackIcon,
         description: "Slack is a powerful team communication platform.",
-        stat: "[Something]"
+        stat: "20%"
     },
-    // {
-    //     name: "Relume",
-    //     icon: relumeIcon,
-    //     description: "Relume is a no-code website builder and design system.",
-    // },
-    // {
-    //     name: "Framer",
-    //     icon: framerIcon,
-    //     description: "Framer is a professional website prototyping tool.",
-    // },
-    // {
-    //     name: "GitHub",
-    //     icon: githubIcon,
-    //     description: "GitHub is the leading platform for code collaboration.",
-    // },
+    {
+        name: "Age 25-34",
+        icon: slackIcon,
+        description: "Slack is a powerful team communication platform.",
+        stat: "70%"
+    },
+    {
+        name: "Age 35-44",
+        icon: slackIcon,
+        description: "Slack is a powerful team communication platform.",
+        stat: "10%"
+    },
 ];
 
 export type IntegrationsType = typeof integrations;
