@@ -5,6 +5,14 @@ import { motion } from "framer-motion";
 import cursorYouImage from "@/assets/images/cursor-you.svg";
 
 export default function Hero() {
+    const handleContactClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+              contactSection.scrollIntoView({ behavior: "smooth" });
+          }
+      };
+  
     return (
         <section
             id="home"
@@ -21,7 +29,7 @@ export default function Hero() {
                     className="flex justify-center"
                 >
                     <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full text-neutral-950 font-semibold">
-                        ✨ $7.5M seed round raised
+                        {/* ✨ $7.5M seed round raised */}
                     </div>
                 </motion.div>
                 <motion.h1 
@@ -30,7 +38,7 @@ export default function Hero() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="text-6xl md:text-7xl lg:text-8xl font-medium text-center mt-6"
                 >
-                    Impactful design, created effortlessly
+                    Impactful stories, lasting impressions
                 </motion.h1>
                 <motion.p 
                     initial={{ y: 20, opacity: 0 }}
@@ -38,11 +46,9 @@ export default function Hero() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="text-center text-xl text-white/50 mt-8 max-w-2xl mx-auto"
                 >
-                    Design tools shouldn&apos;t slow you down. Layers combines
-                    powerful features with an intuitive interface that keeps you
-                    in your creative flow
+                    Storytelling tools shouldn’t hold you back. Discover the right stories to tell. Bring your business to the forefront of minds and eyes everywhere.
                 </motion.p>
-                <motion.form 
+                {/* <motion.form 
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
@@ -58,10 +64,18 @@ export default function Hero() {
                         variant="primary"
                         className="whitespace-nowrap"
                     >
-                        Sign Up
+                        Get In Touch
                     </Button>
-                </motion.form>
+                </motion.form> */}
+              <Button
+                        onClick={handleContactClick}
+                        variant="primary"
+                        className="whitespace-nowrap flex border border-white/15 rounded-full p-2 mt-8 max-w-lg mx-auto"
+                    >
+                        Get In Touch
+                    </Button>
             </div>
         </section>
     );
 }
+
