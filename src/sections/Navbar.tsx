@@ -51,12 +51,12 @@ export default function Navbar() {
         <>
             <section className={twMerge(
                 "py-4 md:py-6 fixed w-full top-0 z-50 transition-all duration-300",
-                scrolled && "py-2 md:py-3 backdrop-blur-lg"
+                scrolled && "py-2 md:py-3"
             )}>
                 <div className="container max-w-5xl">
                     <div className={twMerge(
-                        "border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur transition-all duration-300",
-                        scrolled && "bg-neutral-950/90"
+                        "border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/30 backdrop-blur-md transition-all duration-300",
+                        scrolled && "bg-neutral-950/50 backdrop-blur-lg"
                     )}>
                         <div className="grid grid-cols-2 md:grid-cols-3 p-2 px-4 md:pr-2 items-center">
                             <div>
